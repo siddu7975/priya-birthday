@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Priya ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle, #ff758c, #ff7eb3, #ff4e8b);
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    animation: heartbeat 2s infinite;
+}
+
+/* Glow effect */
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 25px #ff4e8b, 0 0 40px #ff4e8b; }
+}
+
+/* Heartbeat */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+/* Pages */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 1s;
+}
+
+.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Button */
+button {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: #ff4e8b;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Typing */
+.typing {
+    border-right: 3px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Images */
+img {
+    width: 80%;
+    border-radius: 15px;
+    margin: 10px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    bottom: -10px;
+    font-size: 18px;
+    animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Sparkles */
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* Burst */
+.burst {
+    font-size: 50px;
+    animation: pop 1s ease-out forwards;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- FIRST PAGE -->
+<div class="page active">
+    <h1 style="animation: glow 2s infinite alternate;">Hey Priya ❤️</h1>
+    <p>Open this when you're alone 💌</p>
+    <button onclick="start()">Tap Here</button>
+</div>
+
+<!-- TEXT PAGES -->
+<div class="page"><h2 class="typing" id="t1"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t2"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t3"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t4"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t5"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t6"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t7"></h2><button onclick="next()">Next</button></div>
+<div class="page"><h2 class="typing" id="t8"></h2><button onclick="next()">Next</button></div>
+
+<!-- PHOTOS -->
+<div class="page">
+    <h2>Our Beautiful Memories ❤️</h2>
+    <img id="slide" src="photo1.jpg">
+    <button onclick="next()">Next</button>
+</div>
+
+<!-- FINAL -->
+<div class="page">
+    <div class="burst">💖💖💖</div>
+    <h1 style="animation: glow 2s infinite alternate;">
+        Happy Birthday My Mine Priya 💖
+    </h1>
+    <h2>I Love You Forever ❤️</h2>
+    <h3>Will you stay with me always? 💍</h3>
+    <h3>– Yours Siddu 💌</h3>
+</div>
+
+<script>
+let pages = document.querySelectorAll('.page');
+let current = 0;
+
+function start() {
+    document.getElementById("music").play();
+    next();
+}
+
+function next() {
+    pages[current].classList.remove('active');
+    current++;
+    if (pages[current]) {
+        pages[current].classList.add('active');
+    }
+}
+
+/* TEXTS */
+let texts = [
+"Ammu… 💖",
+"My Muddu… 🫶",
+"My Bangara… ❤️",
+"I have something special for you 👀",
+"Because today is not just any day…",
+"It’s the day my whole world was born 💫",
+"Ammu, I love you more than words can say ❤️",
+"You are my happiness, my peace, my everything 💖"
+];
+
+function typeEffect(el, text, i = 0) {
+    if (i < text.length) {
+        el.innerHTML += text.charAt(i);
+        setTimeout(() => typeEffect(el, text, i + 1), 40);
+    }
+}
+
+texts.forEach((txt, i) => {
+    let el = document.getElementById("t" + (i+1));
+    if(el) typeEffect(el, txt);
+});
+
+/* SLIDESHOW */
+let images = ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
+let index = 0;
+
+setInterval(() => {
+    index = (index + 1) % images.length;
+    document.getElementById("slide").src = images[index];
+}, 2000);
+
+/* HEARTS */
+setInterval(() => {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 5000);
+}, 300);
+
+/* SPARKLES */
+setInterval(() => {
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 2000);
+}, 200);
+</script>
+
+</body>
+</html>
