@@ -10,16 +10,17 @@ body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background: radial-gradient(circle, #ff758c, #ff7eb3, #ff4e8b);
+    background-color: black; /* fallback */
     overflow: hidden;
-    color: white;
+    color: #ffffff;
     text-align: center;
     animation: heartbeat 2s infinite;
 }
 
-/* Glow effect */
+/* Glow */
 @keyframes glow {
-    from { text-shadow: 0 0 10px #fff; }
-    to { text-shadow: 0 0 25px #ff4e8b, 0 0 40px #ff4e8b; }
+    from { text-shadow: 0 0 10px black; }
+    to { text-shadow: 0 0 25px black, 0 0 40px black; }
 }
 
 /* Heartbeat */
@@ -71,7 +72,7 @@ img {
     width: 80%;
     border-radius: 15px;
     margin: 10px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
 /* Hearts */
